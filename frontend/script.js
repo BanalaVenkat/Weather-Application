@@ -1,4 +1,4 @@
-const API_BASE = "https://weather-application-qwiy.onrender.com//api"; // Replace for production deployment.
+const API_BASE = "https://weather-application-qwiy.onrender.com"; // Replace for production deployment.
 
 const $ = (id) => document.getElementById(id);
 const input = $("location-input");
