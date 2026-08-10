@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered global weather intelligence dashboard">
+    <title>Weather Intelligence</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-shell">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">AI WEATHER INTELLIGENCE</p>
+                <h1>Weather Intelligence</h1>
+            </div>
+            <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle theme">🌙</button>
+        </header>
+
+        <section class="location-panel glass">
+            <div class="search-row">
+                <div class="search-wrap">
+                    <span>🔎</span>
+                    <input id="location-input" type="search"
+                           placeholder="Search any city, town, village or place..."
+                           autocomplete="off">
+                </div>
+                <button id="search-btn" class="primary-btn">Search</button>
+                <button id="gps-btn" class="secondary-btn" title="Use live location">📍 Live</button>
+            </div>
+            <div id="location-results" class="location-results hidden"></div>
+            <div id="recent-locations" class="recent-locations"></div>
+        </section>
+
+        <section id="status" class="status hidden"></section>
+
+        <section id="weather-content" class="hidden">
+            <section class="hero glass">
+                <div class="location-heading">
+                    <div>
+                        <span class="live-dot"></span>
+                        <span id="location-name">--</span>
+                    </div>
+                    <p id="location-address">--</p>
+                </div>
+
+                <div class="current-weather">
+                    <div class="weather-icon" id="weather-icon">☀️</div>
+                    <div>
+                        <div class="temperature" id="temperature">--°</div>
+                        <div class="condition" id="condition">--</div>
+                        <div class="muted">Feels like <strong id="feels-like">--°</strong></div>
+                    </div>
+                </div>
+
+                <div class="metric-grid">
+                    <div class="metric"><span>💧 Humidity</span><strong id="humidity">--</strong></div>
+                    <div class="metric"><span>💨 Wind</span><strong id="wind">--</strong></div>
+                    <div class="metric"><span>☔ Rain chance</span><strong id="rain">--</strong></div>
+                    <div class="metric"><span>👁️ Visibility</span><strong id="visibility">--</strong></div>
+                    <div class="metric"><span>🌅 Sunrise</span><strong id="sunrise">--</strong></div>
+                    <div class="metric"><span>🌇 Sunset</span><strong id="sunset">--</strong></div>
+                </div>
+            </section>
+
+            <section class="ai-card glass">
+                <div class="section-title">
+                    <div>
+                        <span class="badge">AI</span>
+                        <h2>Weather Report</h2>
+                    </div>
+                    <span id="ai-source" class="muted">AI analysis</span>
+                </div>
+                <div id="ai-report" class="ai-report">
+                    <div class="skeleton"></div>
+                    <div class="skeleton short"></div>
+                </div>
+            </section>
+
+            <section class="glass section-card">
+                <div class="section-title">
+                    <h2>Hourly Forecast</h2>
+                    <span class="muted">Next 24 hours</span>
+                </div>
+                <div id="hourly" class="horizontal-scroll"></div>
+            </section>
+
+            <section class="glass section-card">
+                <div class="section-title">
+                    <h2>7-Day Forecast</h2>
+                    <span class="muted">Daily outlook</span>
+                </div>
+                <div id="daily" class="daily-grid"></div>
+            </section>
+
+            <section class="glass section-card">
+                <div class="section-title">
+                    <h2>Weather Trend</h2>
+                    <span class="muted">Temperature & rain probability</span>
+                </div>
+                <div id="trend" class="trend"></div>
+            </section>
+
+            <p class="data-note">
+                Weather data: Open-Meteo · Location data: Open-Meteo Geocoding / OpenStreetMap
+            </p>
+        </section>
+
+        <section id="empty-state" class="empty glass">
+            <div>🌍</div>
+            <h2>Explore weather anywhere</h2>
+            <p>Search any location worldwide or use your live GPS location.</p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
