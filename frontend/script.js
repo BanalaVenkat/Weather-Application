@@ -1,4 +1,4 @@
-const API_BASE = "https://74.220.48.0/api"; // Replace for production deployment.
+const API_BASE = "https://74.220.48.0/24/api"; // Replace for production deployment.
 
 const $ = (id) => document.getElementById(id);
 const input = $("location-input");
