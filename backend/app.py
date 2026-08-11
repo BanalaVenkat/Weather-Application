@@ -70,27 +70,59 @@ def reverse_geocode():
     try:
         lat = float(request.args["latitude"])
         lon = float(request.args["longitude"])
+
         data = request_json(
             NOMINATIM_URL,
-            {"lat": lat, "lon": lon, "format": "jsonv2", "zoom": 18, "addressdetails": 1},
-            headers={"User-Agent": "WeatherIntelligenceApp/1.0 (replace-with-your-email@example.com)"}
+            {
+                "lat": lat,
+                "lon": lon,
+                "format": "jsonv2",
+                "zoom": 18,
+                "addressdetails": 1
+            },
+            headers={
+                "User-Agent": "WeatherIntelligenceApp/1.0 (banalavenkat910@gmail.com)",
+                "Accept-Language": "en"
+            },
+            timeout=20
         )
+
         address = data.get("address", {})
-        name = (address.get("amenity") or address.get("building") or address.get("road")
-                or address.get("city") or address.get("town") or address.get("village")
-                or "Current Location")
+
+        name = (
+            address.get("amenity")
+            or address.get("building")
+            or address.get("road")
+            or address.get("city")
+            or address.get("town")
+            or address.get("village")
+            or "Current Location"
+        )
+
         place = {
             "name": name,
             "latitude": lat,
             "longitude": lon,
-            "display_name": data.get("display_name") or build_display_name(address),
+            "display_name": (
+                data.get("display_name")
+                or build_display_name(address)
+            ),
         }
-        return jsonify(place)
-    except (KeyError, ValueError):
-        return jsonify({"error": "Valid latitude and longitude are required"}), 400
-    except requests.RequestException:
-        return jsonify({"error": "Reverse geocoding service unavailable"}), 502
 
+        return jsonify(place)
+
+    except (KeyError, ValueError):
+        return jsonify({
+            "error": "Valid latitude and longitude are required"
+        }), 400
+
+    except requests.RequestException as e:
+        print("NOMINATIM ERROR:", repr(e))
+
+        return jsonify({
+            "error": "Reverse geocoding service unavailable",
+            "details": str(e)
+        }), 502
 
 @app.get("/api/weather")
 def weather():
