@@ -49,4 +49,3 @@ Example:
 const API_BASE = "https://your-backend-domain.com/api";
 ```
 
-Never commit `.env` or a real API key to GitHub.
