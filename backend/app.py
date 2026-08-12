@@ -163,24 +163,24 @@ def weather():
         "timezone": "auto"
     }
     try:
-    data = request_json(WEATHER_URL, params)
-    return jsonify(data)
+      data = request_json(WEATHER_URL, params)
+      return jsonify(data)
 
-except requests.RequestException as e:
-    print("OPEN-METEO ERROR:", repr(e))
+    except requests.RequestException as e:
+      print("OPEN-METEO ERROR:", repr(e))
 
-    return jsonify({
+      return jsonify({
         "error": "Weather service unavailable",
         "details": str(e)
-    }), 502
+      }), 502
 
-except Exception as e:
-    print("WEATHER ERROR:", repr(e))
+    except Exception as e:
+      print("WEATHER ERROR:", repr(e))
 
-    return jsonify({
+      return jsonify({
         "error": "Weather processing failed",
         "details": str(e)
-    }), 500
+      }), 500
 
 
 def local_ai_report(weather):
